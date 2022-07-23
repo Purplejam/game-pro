@@ -1,3 +1,5 @@
+import {fetchAllGamesType} from '../actions/gamesAction';
+
 const initialState = {
 	popular: [],
 	newComes: [],
@@ -6,10 +8,10 @@ const initialState = {
 	searched: {
 		games: [],
 		query: ''
-	}
+	},
 }
 
-const gameReducer = (state = initialState, action) => {
+const gameReducer = (state = initialState, action: fetchAllGamesType) => {
 	switch(action.type) {
 		case 'FETCH_GAMES' :
 			return {
@@ -17,7 +19,7 @@ const gameReducer = (state = initialState, action) => {
 				popular: action.payload.popular,
 				newComes: action.payload.newComes,
 				upcoming: action.payload.upcoming,
-				isLoading: false
+				isLoading: false,
 			} 
 			case 'LOADING_DATA' : 
 				return {

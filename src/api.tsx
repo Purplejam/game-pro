@@ -36,13 +36,13 @@ export const upcomingGamesURL = `${base_url}games?key=${key}&${nextDateRequest}&
 export const newestGamesURL = `${base_url}games?key=${key}&${dateRequest}&ordering=released`;
 
 //URL for game
-export const gameDetailsURL = (id) => `${base_url}games/${id}?key=${key}`;
+export const gameDetailsURL = (id: number) => `${base_url}games/${id}?key=${key}`;
 
 //URL for game screenshots
-export const screenshotsURL = (slug) => `${base_url}games/${slug}/screenshots?key=${key}`;
+export const screenshotsURL = (slug: string) => `${base_url}games/${slug}/screenshots?key=${key}`;
 
 //URL for search game
-export const searchedGamesURL = (game_name) => `${base_url}games?key=${key}&search=${game_name}&search_precise=true&page_size=20`;
+export const searchedGamesURL = (game_name: string) => `${base_url}games?key=${key}&search=${game_name}&search_precise=true&page_size=20`;
 
 
 

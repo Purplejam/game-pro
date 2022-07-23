@@ -1,10 +1,15 @@
-import {motion, AnimateSharedLayout} from 'framer-motion';
+import {motion} from 'framer-motion';
 import styled from 'styled-components';
 import logo from '../img/logo.svg';
-import {gamesSearchThunk, clearDataAction} from '../actions/gamesAction.js';
+import {gamesSearchThunk, clearDataAction} from '../actions/gamesAction';
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
+import { AppStateType } from '../reducers/index';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
 
+
+//styles
 const StyledNav = styled(motion.div)`
 	padding: 3rem 5rem;
  text-align: center;
@@ -44,9 +49,9 @@ const Search = styled(motion.form)`
 
 export default function Nav() {
 	const [inputValue, setInput] = useState('');
-	const dispatch = useDispatch();
+	const dispatch: ThunkDispatch<AppStateType, void, Action> = useDispatch();
 
-	const formSubmitHandler = async (e) => {
+	const formSubmitHandler = async (e: React.FormEvent) => {
 		e.preventDefault();
 		await dispatch(gamesSearchThunk(inputValue));
 		setInput('');
@@ -61,10 +66,10 @@ export default function Nav() {
 		<StyledNav>
 			<Logo onClick={clearInputHandler}>
 				<img src={logo} alt="logo"/>
-				<h1>Ignite</h1>
+				<h1>Game PRO</h1>
 			</Logo>
 			<Search onSubmit={formSubmitHandler}>
-				<input value={inputValue} type="text" onChange={(e) => setInput(e.target.value)}/>
+				<input value={inputValue} type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}/>
 				<button type="submit">Search</button>
 			</Search>
 		</StyledNav>

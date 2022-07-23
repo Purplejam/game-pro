@@ -1,5 +1,4 @@
-import React from 'react';
-import {motion, AnimateSharedLayout} from 'framer-motion';
+import {motion} from 'framer-motion';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
 import { useNavigate } from "react-router-dom";
@@ -12,8 +11,27 @@ import xbox from '../img/xbox.svg';
 import fullStar from '../img/star-full.png';
 import emptyStar from '../img/star-empty.png';
 import loadingGif from '../img/loader.webp';
-import {gameResetAction} from '../actions/gameDetailAction.js';
+import {gameResetAction} from '../actions/gameDetailAction';
 import {useDispatch} from 'react-redux';
+import {smallImage} from './Game';
+import { AppStateType } from '../reducers/index';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
+
+
+//Types 
+type gamePlatFormType = {
+	platform: {
+		id: number, 
+		name: string
+	}
+}
+
+type screenGameType = {
+	image: string,
+	id: number
+}
+
 
 //Styles
 const CardShadow = styled(motion.div)`
@@ -25,6 +43,7 @@ const CardShadow = styled(motion.div)`
 	top: 0;
 	left: 0;
 	padding-top: 4rem;
+	z-index: 999;
 	&::-webkit-scrollbar {
 		width: 0.5rem;
 	}
@@ -101,7 +120,7 @@ const Description = styled(motion.div)`
 `
 
 //Get platform logo
-function getGameImage(platform) {
+function getGameImage(platform: string | null) {
 	switch(platform) {
 		case 'Apple' :
 			return apple;
@@ -119,27 +138,30 @@ function getGameImage(platform) {
 }
 
 //Get star raiting
-function getStarRaiting(raiting) {
+function getStarRaiting(raiting: number | null) {
 	let star = [];
-	raiting = Math.floor(raiting);
-	for (let i = 1; i <= 5; i++) {
-		if (i <= raiting) {
-			star.push(<img src={fullStar} key={i}/>)
-		} else {
-			star.push(<img src={emptyStar} key={i}/>)
+	if (raiting !== null) {
+		raiting = Math.floor(raiting);
+		for (let i = 1; i <= 5; i++) {
+			if (i <= raiting) {
+				star.push(<img src={fullStar} key={i}/>)
+			} else {
+				star.push(<img src={emptyStar} key={i}/>)
+			}
 		}
+		return star;
 	}
-	return star;
 }
 
 //Main component
-function GameDetail({pathId}) {
-	const {game, screen, isLoading} = useSelector(state => state.gameDetail);
+function GameDetail() {
+	const {game, screen, isLoading} = useSelector((state: AppStateType) => state.gameDetail);
 	const history = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch: ThunkDispatch<AppStateType, void, Action> = useDispatch();
 
-	const shadowExitHandler = (e) => {	
-		if (e.target.classList.contains('shadow')) {
+	const shadowExitHandler = (e: React.MouseEvent<HTMLDivElement>) => {	
+		const target = e.target as Element;
+		if (target.classList.contains('shadow')) {
 			dispatch(gameResetAction());
 			document.body.style.overflow = 'auto';
 			history('/');
@@ -155,26 +177,26 @@ function GameDetail({pathId}) {
 								<div className="rating">
 									<motion.h3>{game.name}</motion.h3>
 									<p>Rating: {game.rating}</p>
-									<div className="star-raiting">{getStarRaiting(game.rating)}</div>
+									<div className="star-raiting">{getStarRaiting(game!.rating)}</div>
 								</div>
 								<Info>
 									<h3>Platforms</h3>
 									<Platforms className="platforms">
-										{game.parent_platforms.map(data => (
+										{game.parent_platforms.map((data: gamePlatFormType) => (
 											<img key={data.platform.id} src={getGameImage(data.platform.name)}/>
 											))}
 									</Platforms>
 								</Info>
 							</Stats>
 							<Media>
-								<motion.img src={game.background_image} alt={game.name}/>
+								<motion.img src={smallImage(game.background_image, 1280)} alt={game.name}/>
 							</Media>
 							<Description>
 								<p>{game.description_raw}</p>
 							</Description>
 							<div className="gallery">
-								{screen.results.map(screen => (
-									<img src={screen.image} alt="image" key={screen.id}/>
+								{screen.results.map((screen: screenGameType) => (
+									<img src={smallImage(screen.image, 1280)} alt="image" key={screen.id}/>
 									))}
 							</div>
 						</>
