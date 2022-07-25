@@ -74,15 +74,10 @@ const GameList = styled(motion.div)`
 		margin: 0 auto;
 		opacity: 0.9;
 	}
-	.show-more-button {
-		&:hover {
-			color: #ff7676;
-			cursor: pointer;
-		}
-	}
 	@media (max-width: 768px) {
 		padding: 0rem 2rem 2rem 2rem;
 		.game-categories {
+			grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 			h3 {
 				padding: 1rem 0rem 1rem 0rem;
 			}
@@ -201,7 +196,6 @@ function Home() {
 					})}
 			</Games>
 			</>)}
-			<h4 className="show-more-button">Show more</h4>
 		</GameList>
 		)
 }

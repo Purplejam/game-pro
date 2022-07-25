@@ -69,6 +69,11 @@ const Detail = styled(motion.div)`
 	img {
 		width: 100%;
 	}
+	.gallery {
+		img {
+			margin-bottom: 1rem;
+		}
+	}
 	h3 {
 		padding: 1.5rem 0rem !important;
 	}
@@ -88,11 +93,24 @@ const Detail = styled(motion.div)`
 		height: 5rem;
 		margin-top: 4rem;
 	}
+	 @media (max-width: 768px) {
+	 	width: 96%;
+	 	left: 2%;
+	 	padding: 1rem 1rem;
+ }
 `
 
 const Stats = styled(motion.div)`
 	display: flex;
 	justify-content: space-between;
+	@media (max-width: 768px) {
+		.star-raiting {
+			img {
+				width: 1rem;
+				height: 1rem;
+			}
+		}
+ }
 `
 
 const Info = styled(motion.div)`
@@ -115,9 +133,15 @@ const Media = styled(motion.div)`
 	img {
 		width: 100%;
 	}
+	@media (max-width: 768px) {
+		margin-top: 3rem;
+	}
 `
 const Description = styled(motion.div)`
 	margin: 5rem 0rem;
+	@media (max-width: 768px) {
+		margin: 3rem 0rem;
+	}
 `
 
 //get platform logo

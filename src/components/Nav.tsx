@@ -30,11 +30,17 @@ const StyledNav = styled(motion.div)`
    color: white;
  }
  @media (max-width: 768px) {
- 	padding: 1rem 1rem;
-   input {
-   	width: 60%;
-   	margin-top: 1rem;
-   }
+ 	padding: 1rem 0rem;
+  input {
+  	width: 60%;
+  	margin-top: 1rem;
+  	font-size: 1rem;
+  }
+  button {
+  	font-size: 1rem;
+  	padding: 0.5rem 1rem;
+  }
+
  }
 `
 
@@ -71,12 +77,12 @@ export default function Nav() {
 
 	return(
 		<StyledNav>
-			<Logo onClick={clearInputHandler}>
+			<Logo data-testid="search-logo" onClick={clearInputHandler}>
 				<img src={logo} alt="logo"/>
 				<h1>Game PRO</h1>
 			</Logo>
 			<Search onSubmit={formSubmitHandler}>
-				<input value={inputValue} type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}/>
+				<input data-testid="search-input" value={inputValue} type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}/>
 				<button type="submit">Search</button>
 			</Search>
 		</StyledNav>

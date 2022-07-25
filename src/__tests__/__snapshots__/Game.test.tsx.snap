@@ -3,7 +3,7 @@
 exports[`<Game/> renders properly the game component 1`] = `
 <div>
   <div
-    class="sc-bczRLJ ljdprE"
+    class="sc-bczRLJ eymvcN"
   >
     <a
       href="/game/1234"

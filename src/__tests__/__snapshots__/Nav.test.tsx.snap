@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Nav/> renders properly the game component 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ dwLQWB"
+  >
+    <div
+      class="sc-gsnTZi fhqrCy"
+      data-testid="search-logo"
+    >
+      <img
+        alt="logo"
+        src="logo.svg"
+      />
+      <h1>
+        Game PRO
+      </h1>
+    </div>
+    <form
+      class="sc-dkzDqf jlXTiK"
+    >
+      <input
+        data-testid="search-input"
+        type="text"
+        value="warcraft 12"
+      />
+      <button
+        type="submit"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+</div>
+`;

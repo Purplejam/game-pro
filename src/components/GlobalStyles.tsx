@@ -55,4 +55,16 @@ export const GlobalStyle = createGlobalStyle`
         }
         transition: all 0.2s ease;
     }
+    @media (max-width: 768px) {
+       h3 {
+           font-size: 1rem;
+           padding: 1rem 0rem;
+       }
+       p {
+           font-size: 0.8rem;
+       }
+       h2 {
+           font-size: 2rem;
+       } 
+    }
 `
