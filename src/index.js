@@ -6,14 +6,10 @@ import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index.tsx';
 import thunk from 'redux-thunk';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Game from './components/Game';
+import { BrowserRouter} from "react-router-dom";
+import store from "./store/store";
 
-const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
-export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)) );
-
-//REDUX SETUP
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<BrowserRouter>

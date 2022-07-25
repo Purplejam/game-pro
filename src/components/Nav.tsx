@@ -29,6 +29,13 @@ const StyledNav = styled(motion.div)`
    background: #ff7676;
    color: white;
  }
+ @media (max-width: 768px) {
+ 	padding: 1rem 1rem;
+   input {
+   	width: 60%;
+   	margin-top: 1rem;
+   }
+ }
 `
 
 const Logo = styled(motion.div)`

@@ -12,7 +12,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 
 
-//Styles
+//styles
 const StyledGame = styled(motion.div)`
 	img {
 		width: 100%;
@@ -41,7 +41,6 @@ const StyledGame = styled(motion.div)`
 				margin-left: 0.5rem;
 				margin-top: -0.1rem;
 				vertical-align: middle;
-
 			}
 			div, p {
 				display: inline-block;
@@ -56,8 +55,10 @@ const StyledGame = styled(motion.div)`
 		text-align: center;
 		padding: 1rem 2rem;
 	}
+ @media (max-width: 768px) {
+ }
 `
-//Media resize
+//media resize
 export const smallImage = (imagePath: string, size: number) => {
   const image = imagePath.match(/media\/screenshots/)
     ? imagePath.replace(
@@ -68,8 +69,8 @@ export const smallImage = (imagePath: string, size: number) => {
   return image;
 };
 
-//Raiting color
-const raitingColor = (rate: number) => {
+//rating color
+const ratingColor = (rate: number) => {
 	if (rate >= 70 && rate < 100) {
 		return 'green';
 	} else if (rate >= 50 && rate < 70) {
@@ -99,7 +100,7 @@ function Game({name, released, background_image, id, slug, genres, ratings, adde
 					? <p className="game-genres">Genre{genres.length > 1 ? 's' : null}: {genres.map(genre => <span key={genre.id}>{genre.name + ' '}</span>)}</p>
 					: <p className="game-genres">Genre: video game</p>}
 				<div className="game-meta-info">
-					{ratings.length !== 0 ? <p style={{color: raitingColor(ratings[0].percent)}}>{Math.floor(ratings[0].percent)}</p> : null}
+					{ratings.length !== 0 ? <p style={{color: ratingColor(ratings[0].percent)}}>Raiting: {Math.floor(ratings[0].percent)}</p> : null}
 					<div className="game-raiting">
 						<p>{added}</p>
 						<img src={star} alt=""/>

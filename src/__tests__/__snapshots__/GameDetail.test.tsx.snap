@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GameDetail/> renders properly the game component 1`] = `
+<div>
+  <div
+    class="sc-gsnTZi kCCLP shadow"
+  >
+    <div
+      class="sc-dkzDqf cdpgAH"
+    >
+      <div
+        class="sc-hKMtZM eHEAZC stats"
+      >
+        <div
+          class="rating"
+        >
+          <h3>
+            TopGame
+          </h3>
+          <p>
+            Rating: 
+            44
+          </p>
+          <div
+            class="star-raiting"
+          >
+            <img
+              alt="Full Star"
+              src="star-full.png"
+            />
+            <img
+              alt="Full Star"
+              src="star-full.png"
+            />
+            <img
+              alt="Full Star"
+              src="star-full.png"
+            />
+            <img
+              alt="Full Star"
+              src="star-full.png"
+            />
+            <img
+              alt="Full Star"
+              src="star-full.png"
+            />
+          </div>
+        </div>
+        <div
+          class="sc-eCYdqJ hyBjDA"
+        >
+          <h3>
+            Platforms
+          </h3>
+          <div
+            class="sc-jSMfEi hfCYlh platforms"
+          >
+            <img
+              alt="Apple"
+              src="apple.svg"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-gKXOVf kVtWqt"
+      >
+        <img
+          alt="TopGame"
+          src="game-img.jpg"
+        />
+      </div>
+      <div
+        class="sc-iBkjds bKRqVj"
+      >
+        <p>
+          lorem ipsum
+        </p>
+      </div>
+      <div
+        class="gallery"
+      >
+        <img
+          alt="1234"
+          src="game-img.jpg"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

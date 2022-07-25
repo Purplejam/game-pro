@@ -17,9 +17,10 @@ import {smallImage} from './Game';
 import { AppStateType } from '../reducers/index';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
+import {detailReducerType} from '../reducers/gameDetailReducer'
 
 
-//Types 
+//types 
 type gamePlatFormType = {
 	platform: {
 		id: number, 
@@ -33,7 +34,7 @@ type screenGameType = {
 }
 
 
-//Styles
+//styles
 const CardShadow = styled(motion.div)`
 	position: fixed;
 	overflow-y: scroll;
@@ -119,7 +120,7 @@ const Description = styled(motion.div)`
 	margin: 5rem 0rem;
 `
 
-//Get platform logo
+//get platform logo
 function getGameImage(platform: string | null) {
 	switch(platform) {
 		case 'Apple' :
@@ -137,25 +138,33 @@ function getGameImage(platform: string | null) {
 	}
 }
 
-//Get star raiting
+//get star raiting
 function getStarRaiting(raiting: number | null) {
 	let star = [];
 	if (raiting !== null) {
 		raiting = Math.floor(raiting);
 		for (let i = 1; i <= 5; i++) {
 			if (i <= raiting) {
-				star.push(<img src={fullStar} key={i}/>)
+				star.push(<img src={fullStar} key={i} alt="Full Star"/>)
 			} else {
-				star.push(<img src={emptyStar} key={i}/>)
+				star.push(<img src={emptyStar} key={i} alt="Empty Star"/>)
 			}
 		}
 		return star;
 	}
 }
 
-//Main component
-function GameDetail() {
+//components wrapper
+function GameDetailWrapper() {
 	const {game, screen, isLoading} = useSelector((state: AppStateType) => state.gameDetail);
+	return(
+		<GameDetail game={game} screen={screen} isLoading={isLoading}/>
+		)
+}
+
+//main component
+export function GameDetail({game, screen, isLoading}: detailReducerType) {
+	
 	const history = useNavigate();
 	const dispatch: ThunkDispatch<AppStateType, void, Action> = useDispatch();
 
@@ -183,20 +192,20 @@ function GameDetail() {
 									<h3>Platforms</h3>
 									<Platforms className="platforms">
 										{game.parent_platforms.map((data: gamePlatFormType) => (
-											<img key={data.platform.id} src={getGameImage(data.platform.name)}/>
+											<img alt={data.platform.name} key={data.platform.id} src={getGameImage(data.platform.name)}/>
 											))}
 									</Platforms>
 								</Info>
 							</Stats>
 							<Media>
-								<motion.img src={smallImage(game.background_image, 1280)} alt={game.name}/>
+								<motion.img alt={game.name} src={smallImage(game.background_image, 1280)}/>
 							</Media>
 							<Description>
 								<p>{game.description_raw}</p>
 							</Description>
 							<div className="gallery">
 								{screen.results.map((screen: screenGameType) => (
-									<img src={smallImage(screen.image, 1280)} alt="image" key={screen.id}/>
+									<img src={smallImage(screen.image, 1280)} alt={`${screen.id}`} key={screen.id}/>
 									))}
 							</div>
 						</>
@@ -207,4 +216,4 @@ function GameDetail() {
 }
 
 
-export default GameDetail;
+export default GameDetailWrapper;

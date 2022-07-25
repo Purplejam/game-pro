@@ -4,7 +4,7 @@ import {GameDetailType} from '../actions/gameDetailAction';
 export type detailReducerType = {
 	game: {
 		name: string,
-		id: number | null,
+		id: number,
 		rating: number,
 		parent_platforms: object[],
 		background_image: string,
@@ -19,8 +19,8 @@ export type detailReducerType = {
 const initialState = {
 	game: {
 		name: '',
-		id: null,
-		rating: null,
+		id: 0,
+		rating: 0,
 		parent_platforms: [],
 		background_image: '',
 		description_raw: ''
@@ -36,7 +36,6 @@ const gameDetailsReducer = (state = initialState, action: GameDetailType) => {
 	switch(action.type) {
 		case 'GAME_DETAIL_FETCH' :
 			return {
-				...state,
 				game: action.payload.game,
 				screen: action.payload.screen,
 				isLoading: false

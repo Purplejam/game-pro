@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Game/> renders properly the game component 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ ljdprE"
+  >
+    <a
+      href="/game/1234"
+    >
+      <h3>
+        GameTest
+      </h3>
+      <p>
+        Released: 
+        22-12-2022
+      </p>
+      <img
+        src="string"
+      />
+      <p
+        class="game-genres"
+      >
+        Genre
+        : 
+        <span>
+          RPG 
+        </span>
+      </p>
+      <div
+        class="game-meta-info"
+      >
+        <p
+          style="color: red;"
+        >
+          Raiting: 
+          12
+        </p>
+        <div
+          class="game-raiting"
+        >
+          <p>
+            202020
+          </p>
+          <img
+            alt=""
+            src="star-full.png"
+          />
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+`;

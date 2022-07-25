@@ -5,7 +5,7 @@ import Game from './Game';
 import {motion} from 'framer-motion';
 import styled from 'styled-components';
 import { useLocation } from "react-router-dom";
-import GameDetail from './GameDetail';
+import GameDetailWrapper from './GameDetail';
 import Nav from './Nav';
 import loadingGif from '../img/loader.webp';
 import {fadeIn} from '../animation';
@@ -37,15 +37,15 @@ const GameList = styled(motion.div)`
 	padding: 0rem 5rem 5rem 5rem;
 	text-align: center;
 		h4 {
-			padding: 5rem 0rem 4rem 0rem;
+			padding: 5rem 0rem 5rem 0rem;
 		}
 	.game-categories {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		padding: 2rem 0rem;
 			h3 {
 				cursor: pointer !important;
-				padding: 5rem 0rem 1rem 0rem;
-				margin-bottom: 3rem;
+				padding: 2rem 0rem 1rem 0rem;
 				position: relative;
 				&::before {
 				  content: "";
@@ -80,13 +80,28 @@ const GameList = styled(motion.div)`
 			cursor: pointer;
 		}
 	}
+	@media (max-width: 768px) {
+		padding: 0rem 2rem 2rem 2rem;
+		.game-categories {
+			h3 {
+				padding: 1rem 0rem 1rem 0rem;
+			}
+		}
+ }
+	@media (max-width: 400px) {
+		padding: 0rem 1rem 1rem 1rem;
+ }
 `
 const Games = styled(motion.div)`
 	min-height: 80vh;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
 	grid-column-gap: 3rem;
 	grid-row-gap: 5rem;
+	@media (max-width: 768px) {
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-row-gap: 2rem;
+ }
 `
 
 type CategoryHeaderType = {
@@ -95,7 +110,7 @@ type CategoryHeaderType = {
 	activeNav: string
 }
 
-//Tabs component
+//tabs component
 const CategoryHeader = ({name, setActiveCategoryHandler, activeNav}: CategoryHeaderType) => {
 	return(
 		<h3 className={`${activeNav === name ? "active" : "deactive"}`}
@@ -105,7 +120,7 @@ const CategoryHeader = ({name, setActiveCategoryHandler, activeNav}: CategoryHea
 		)
 }
 	
-//Main component
+//main component
 function Home() {
 	const location = useLocation();
 	const path = location.pathname.split('/');
@@ -118,11 +133,11 @@ function Home() {
 	}, [dispatch])
 
 	useEffect(() => {
-		setActiveList(popular);
-	}, [popular])
+		setActiveList(upcoming);
+	}, [upcoming])
 
 	const [activeList, setActiveList] = useState<gameListType>();
-	const [activeNav, setActiveNav] = useState('Popular Games');
+	const [activeNav, setActiveNav] = useState('Upcoming Games');
 
 	const setActiveCategoryHandler = (name: string) => {
 		switch(name) {
@@ -139,8 +154,8 @@ function Home() {
 			 setActiveNav(name);
 			 break;
 			default :
-				setActiveList(popular);
-				setActiveNav('Popular Games');
+				setActiveList(upcoming);
+				setActiveNav('Upcoming Games');
 		}
 	}
 
@@ -165,7 +180,7 @@ function Home() {
 					})}
 				</Games>
 			</div> }
-			{pathId && <GameDetail/>}
+			{pathId && <GameDetailWrapper/>}
 			<div className="game-categories">			
 				<CategoryHeader name="Popular Games" activeNav={activeNav} setActiveCategoryHandler={setActiveCategoryHandler}/>
 				<CategoryHeader name="Upcoming Games" activeNav={activeNav} setActiveCategoryHandler={setActiveCategoryHandler}/>
