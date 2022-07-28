@@ -1,19 +1,9 @@
 import axios from "axios";
 import {gameDetailsURL, screenshotsURL} from '../api';
-import { ThunkDispatch } from 'redux-thunk';
-import { Action } from 'redux';
-import { AppStateType } from '../reducers/index';
-import {detailReducerType} from '../reducers/gameDetailReducer'
+import {ThunkDispatch} from 'redux-thunk';
+import {Action} from 'redux';
+import {AppStateType} from '../reducers/index';
 
-//types
-export type GameDetailType = {
-	type: detailActionTypes,
-	payload: detailReducerType
-}
-
-type detailActionTypes = 'LOADING_DATA_DETAILS' | 'GAME_DETAIL_FETCH' | 'GAME_DETAIL_RESET';
-
-//actions
 export const gameDetailAction = (id: number, slug: string) => async (dispatch: ThunkDispatch<AppStateType, void, Action>) => {
 	const gameURL = await axios.get(gameDetailsURL(id));
 	const screenshotUrl = await axios.get(screenshotsURL(slug));

@@ -4,33 +4,15 @@ import {gamesActionThunk} from '../actions/gamesAction';
 import Game from './Game';
 import {motion} from 'framer-motion';
 import styled from 'styled-components';
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import GameDetailWrapper from './GameDetail';
 import Nav from './Nav';
 import loadingGif from '../img/loader.webp';
 import {fadeIn} from '../animation';
-import { AppStateType } from '../reducers/index';
-import { ThunkDispatch } from 'redux-thunk';
-import { Action } from 'redux';
-
-//types
-export type gameType = {
-	id: number,
-	name: string,
-	ratings: {
-		percent: number
-	}[],			
-	slug: string,
-	added: number,
-	released: string,
-	background_image: string,
-	genres: {
-		name: string,
-		id: number
-	}[]
-}
-
-export type gameListType = Array<gameType>;
+import {AppStateType} from '../reducers/index';
+import {ThunkDispatch} from 'redux-thunk';
+import {Action} from 'redux';
+import {gameType, gameListType} from '../types';
 
 //styles
 const GameList = styled(motion.div)`

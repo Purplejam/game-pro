@@ -1,30 +1,4 @@
-import {GameDetailType} from '../actions/gameDetailAction';
-
-//types
-export type detailReducerType = {
-	game: {
-		name: string,
-		id: number,
-		rating: number,
-		parent_platforms: object[],
-		background_image: string,
-		description_raw: string,
-		reddit_description: string,
-		developers: {
-			id: number,
-			name: string,
-			slug: string,
-			games_count: number,
-			image_background: string
-		}[],
-		added: number,
-		website: string
-	},
-	screen: {
-		results: object[]
-	},
-	isLoading: boolean,
-}
+import {GameDetailType} from '../types';
 
 const initialState = {
 	game: {

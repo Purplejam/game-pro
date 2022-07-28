@@ -17,30 +17,8 @@ import {smallImage} from './Game';
 import { AppStateType } from '../reducers/index';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
-import {detailReducerType} from '../reducers/gameDetailReducer'
+import {detailReducerType, screenGameType, developerType, gamePlatFormType} from '../types';
 import star from '../img/star-full.png';
-
-
-//types 
-type gamePlatFormType = {
-	platform: {
-		id: number, 
-		name: string
-	}
-}
-
-type screenGameType = {
-	image: string,
-	id: number
-}
-
-type developerType = {
-	id: number,
-	name: string,
-	slug: string,
-	games_count: number,
-	image_background: string
-}
 
 
 //styles

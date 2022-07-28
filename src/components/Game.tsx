@@ -2,14 +2,14 @@ import {motion} from 'framer-motion';
 import styled from 'styled-components';
 import {gameDetailAction} from '../actions/gameDetailAction';
 import {useDispatch} from 'react-redux';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import default_img from "../img/default_img.png";
-import { item } from '../animation';
+import {item} from '../animation';
 import star from '../img/star-full.png';
-import { gameType } from './Home';
-import { AppStateType } from '../reducers/index';
-import { ThunkDispatch } from 'redux-thunk';
-import { Action } from 'redux';
+import {gameType} from '../types';
+import {AppStateType} from '../reducers/index';
+import {ThunkDispatch} from 'redux-thunk';
+import {Action} from 'redux';
 
 
 //styles

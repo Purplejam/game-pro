@@ -1,4 +1,4 @@
-import {fetchAllGamesType} from '../actions/gamesAction';
+import {fetchAllGamesType} from '../types';
 
 const initialState = {
 	popular: [],

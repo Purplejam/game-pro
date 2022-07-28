@@ -1,25 +1,10 @@
 import axios from "axios";
 import {popularGameURL, upcomingGamesURL, newestGamesURL, searchedGamesURL} from '../api';
-import { ThunkDispatch } from 'redux-thunk';
-import { Action } from 'redux';
-import { AppStateType } from '../reducers/index';
-import {gameListType} from '../components/Home';
+import {ThunkDispatch} from 'redux-thunk';
+import {Action} from 'redux';
+import {AppStateType} from '../reducers/index';
 
-//types
-export type fetchAllGamesType = {
-	type: actionTypes,
-	payload: {
-		popular: gameListType,
-		newComes: gameListType,
-		upcoming: gameListType,
-		searched: gameListType,
-		query: string,
-	}
-}
 
-type actionTypes = 'FETCH_GAMES' | 'LOADING_DATA' | 'SEARCH_GAMES' | 'CLEAR_DATA';
-
-//actions
 export const gamesActionThunk = () => async (dispatch: ThunkDispatch<AppStateType, void, Action>) => {
 	const popularGamesData = await axios.get(popularGameURL);
 	const newestGamesData = await axios.get(newestGamesURL);
@@ -40,9 +25,7 @@ export const gamesSearchThunk = (game_name: string) => async (dispatch: ThunkDis
 	dispatch({
 		type: 'LOADING_DATA',
 	})
-
 	const searchedGamesPayload = await axios.get(searchedGamesURL(game_name));
-
 	dispatch({
 		type: 'SEARCH_GAMES',
 		payload: {
