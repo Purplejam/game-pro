@@ -8,7 +8,17 @@ export type detailReducerType = {
 		rating: number,
 		parent_platforms: object[],
 		background_image: string,
-		description_raw: string
+		description_raw: string,
+		reddit_description: string,
+		developers: {
+			id: number,
+			name: string,
+			slug: string,
+			games_count: number,
+			image_background: string
+		}[],
+		added: number,
+		website: string
 	},
 	screen: {
 		results: object[]
@@ -23,7 +33,17 @@ const initialState = {
 		rating: 0,
 		parent_platforms: [],
 		background_image: '',
-		description_raw: ''
+		description_raw: '',
+		reddit_description: '',
+		developers: [{
+					id: 0,
+					name: '',
+					slug: '',
+					games_count: 0,
+					image_background: ''
+				}],
+		added: 0,
+		website: ''
 	},
 	screen: {
 		results: []

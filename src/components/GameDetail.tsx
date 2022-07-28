@@ -18,6 +18,7 @@ import { AppStateType } from '../reducers/index';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import {detailReducerType} from '../reducers/gameDetailReducer'
+import star from '../img/star-full.png';
 
 
 //types 
@@ -33,6 +34,14 @@ type screenGameType = {
 	id: number
 }
 
+type developerType = {
+	id: number,
+	name: string,
+	slug: string,
+	games_count: number,
+	image_background: string
+}
+
 
 //styles
 const CardShadow = styled(motion.div)`
@@ -44,6 +53,7 @@ const CardShadow = styled(motion.div)`
 	top: 0;
 	left: 0;
 	padding-top: 4rem;
+	padding-bottom: 4rem;
 	z-index: 999;
 	&::-webkit-scrollbar {
 		width: 0.5rem;
@@ -71,14 +81,15 @@ const Detail = styled(motion.div)`
 	}
 	.gallery {
 		img {
-			margin-bottom: 1rem;
+			margin-bottom: 0.5rem;
 		}
 	}
 	h3 {
-		padding: 1.5rem 0rem !important;
+		padding: 1.5rem 0rem;
 	}
 	.rating {
 		text-align: left;
+		width: 50%;
 		img {
 			display: inline;
 			width: 2rem;
@@ -87,6 +98,19 @@ const Detail = styled(motion.div)`
 	}
 	.platforms {
 		text-align: right;
+	}
+	.game-website {
+		padding-top: 4rem;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+		img {
+			width: 1.2rem;
+			height: 1.2rem;
+			display: inline-block;
+			margin-right: 0.5rem;
+			margin-top: -0.5rem;
+		}
 	}
 	.loading-img {
 		width: 5rem;
@@ -97,6 +121,13 @@ const Detail = styled(motion.div)`
 	 	width: 96%;
 	 	left: 2%;
 	 	padding: 1rem 1rem;
+	 	.game-website {
+	 		img {
+			 	width: 0.8rem;
+					height: 0.8rem;
+					margin-right: 0.2rem;
+	 		}
+	 	}
  }
 `
 
@@ -115,6 +146,7 @@ const Stats = styled(motion.div)`
 
 const Info = styled(motion.div)`
 	text-align: center;
+	width: 50%;
 	h3 {
 		text-align: right;
 	}
@@ -122,9 +154,23 @@ const Info = styled(motion.div)`
 
 const Platforms = styled(motion.div)`
 	display: flex;
-	justify-content: space-evenly;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-content: center;
 	img {
-		margin-left: 3rem;
+		display: inline-block;
+		margin-left: 1rem;
+		width: 2rem;
+	}
+	@media (max-width: 768px) {
+		img {
+			width: 1.5rem;
+		}
+	}
+	@media (max-width: 400px) {
+		img {
+			width: 1.2rem;
+		}
 	}
 `
 
@@ -136,11 +182,37 @@ const Media = styled(motion.div)`
 	@media (max-width: 768px) {
 		margin-top: 3rem;
 	}
+	@media (max-width: 400px) {
+		margin-top: 1.5srem;
+	}
 `
 const Description = styled(motion.div)`
 	margin: 5rem 0rem;
 	@media (max-width: 768px) {
 		margin: 3rem 0rem;
+	}
+	@media (max-width: 400px) {
+		margin: 1.5rem 0rem;
+	}
+`
+const Developers = styled(motion.div)`
+	.developers-item {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		text-align: left;
+		padding: 0.5rem 0rem;
+		img {
+			width: 30%;
+			border-radius: 5px;
+		}
+		.developers-description {
+			p {
+				margin: 0rem 0rem;
+				padding: 0rem 0rem;
+			}
+			padding: 0rem 1rem;
+		}
 	}
 `
 
@@ -228,10 +300,34 @@ export function GameDetail({game, screen, isLoading}: detailReducerType) {
 								<p>{game.description_raw}</p>
 							</Description>
 							<div className="gallery">
+							<h3>Screenshots</h3>
 								{screen.results.map((screen: screenGameType) => (
 									<img src={smallImage(screen.image, 1280)} alt={`${screen.id}`} key={screen.id}/>
 									))}
 							</div>
+								{game.reddit_description.length > 0 && (
+									<Description>
+										<h3>Reddit description</h3>
+										<p>{game.reddit_description}</p>
+									</Description>)}
+								{game.developers.length > 0 && (
+									<Developers>
+										<h3>Developers</h3>
+										{game.developers.map((dev: developerType) => (
+											<div className="developers-item" key={dev.id}>
+												<img src={smallImage(dev.image_background, 1280)} alt={`${dev.id}`} key={dev.id}/>
+												<div className="developers-description">
+													<p><b>Developer: </b>{dev.name}</p>
+													<p><b>{`${dev.games_count}`}</b> published games</p>
+												</div>
+											</div>
+											))}
+									</Developers>
+									)}
+								<div className="game-website">
+									<p><img src={star} alt={game.name}/><b>{game.added}</b></p>
+									<p><a href={game.website}>{game.website}</a></p>
+								</div>
 						</>
 						)}
 					</Detail>
